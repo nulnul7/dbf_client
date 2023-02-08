@@ -5,7 +5,7 @@ export const BlogContext = React.createContext()
 
 const BlogInitState = {
     isLoading: false,
-    isERROR: false,
+    isERROR: null,
     allBlogs: [],
     singleBlog: {},
 }
@@ -25,18 +25,18 @@ const BlogReducer = (state, action) => {
             return {
                 ...state,
                 singleBlog: action.payload,
-                isLoading: false
+                isLoading: null
             }
         case "GET_BLOGS":
             return {
                 ...state,
                 allBlogs: action.payload,
-                isLoading: false
+                isLoading: null
             }
         case "SET_ERROR":
             return {
                 ...state,
-                isERROR: action.payload.error,
+                isERROR: action.payload,
             }
         default:
             return state;
@@ -66,36 +66,18 @@ const BlogProvider = ({ children }) => {
     }, [])
 
     const [state, dispatch] = useReducer(BlogReducer, BlogInitState)
-
-    //// Function dipindah ke component Blog, dari blog data dikirim ke usereducer-context dalam payload
-    // const getSingleBlog = async (id) => {
-    //     try {
-    //         const blog = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
-    //         const blogData = blog.data;
-    //         dispatch({
-    //             type: BlogReducer.GET_BLOG_SINGLE,
-    //             payload: { blogData }
-    //         })
-    //     } catch (error) {
-    //         dispatch({
-    //             type: BlogReducer.SET_ERROR,
-    //             payload: { error: error.message }
-    //         })
-    //     }
-
-    // }
-
     const value = {
+        isERROR: state.isERROR,
         isLoading: state.isLoading,
         singleBlog: state.singleBlog,
-        allBlogs: state.allBlogs
+        allBlogs: state.allBlogs,
     }
 
     return (
         <BlogContext.Provider
             value={{
-                value,
-                dispatch
+                ...value,
+                dispatch,
             }}
         >
             {children}

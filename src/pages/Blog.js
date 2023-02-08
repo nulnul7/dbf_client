@@ -8,8 +8,9 @@ import { BlogContext } from '../contextBlog'
 const Blog = () => {
 
   const [blog, setBlog] = useState([])
+  const [blogId, setBlogId] = useState()
 
-  const { dispatch } = useContext(BlogContext)
+  const { dispatch, value } = useContext(BlogContext)
 
   useEffect(() => {
     const getBlog = async () => {
@@ -23,26 +24,28 @@ const Blog = () => {
     getBlog()
   }, [])
 
+  console.log('isi dari data detil', blog)
   const navigate = useNavigate()
-
   const clickHandler = (id) => {
     const getBlogSingle = async () => {
       try {
         const blog = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
-        const blogData = blog.data;
+        setBlogId(blog.data)
         dispatch({
           type: "GET_BLOG_SINGLE",
-          payload: { blogData }
+          payload: blog.data
         })
+        return blog.data
       } catch (error) {
         dispatch({
           type: "SET_ERROR",
-          payload: { error: error.message }
+          payload: error.message
         })
       }
     }
     getBlogSingle()
-    navigate(`/blog/${id}`)
+    console.log('isi singleBlog', value, blog);
+    navigate(`/blog/${id}`, { state: { blogId } })
   }
 
   return (

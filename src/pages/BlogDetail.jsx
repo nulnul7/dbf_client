@@ -1,63 +1,59 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { BlogContext } from '../contextBlog'
+import React, { useState } from 'react';
 import Carousel from 'react-gallery-carousel';
 import 'react-gallery-carousel/dist/index.css';
+import imageSubs from '../assets/defaultImages.jpeg';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-// const BlogContainer = styled.div`
-//     margin: 70px auto 0 auto;
-//     width: 80vw;
-// `
-// const BlogImage = styled.img`
-//     width: 100%;
-//     height: 270px;
-// `
-// const BlogContent = styled.div`
-//     display: flex;
-//     width: 100%;
-//     margin-top: 35px;
-// `
-// const BlogLink = styled.div`
-//     width: 30%;
-//     display: inline-block;
-//     text-align: center;
-// `
-// const BlogText = styled.div`
-//     width: 70%;
-//     font-weight: 400;
-// `
 
 const BlogDetail = () => {
-    const { value } = useContext(BlogContext)
-    // const bude = value.singleBlog.blogData.photos
-    console.log('ini all Blogs', value,);
+
+    const [blog, setBlog] = useState({})
+
+    let location = useLocation();
+    const id = location.pathname.slice(6)
+
+    React.useEffect(() => {
+        const coba = async () => {
+            const getData = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
+            setBlog(getData.data)
+            console.log(getData.data, 'isi blog single')
+        }
+        coba();
+    }, [id])
 
 
-    const images = [9, 8, 7, 6, 5].map((number) => ({
-        src: `https://placedog.net/${number}00/${number}00?id=${number}`
+    const images = blog.photos?.map((number) => ({
+        src: `${number}`
     }));
 
     return (
         <div className="bdContainer">
             <div className="bdWrapper">
-                <Carousel
-                    className='carousel'
-                    images={images}
-                    style={{ height: 500, width: 800 }}
-                    hasMediaButton={false}
-                    hasThumbnails={false}
-                />
-
+                <div className="carousel">
+                    {
+                        images ?
+                            <Carousel
+                                images={images}
+                                style={{ height: 250, width: 1050 }}
+                                hasMediaButton={false}
+                                hasThumbnails={false}
+                                objectFit='cover'
+                            /> : <img src={imageSubs} alt="nkri" className='altPicts' />
+                    }
+                </div>
                 <img src='' alt='' />
                 <div className="bdContents">
                     <ul>
-                        <li>holla 1</li>
-                        <li>holla 2</li>
-                        <li>holla 3</li>
+                        <li>halo 1</li>
+                        <li>halo 2</li>
+                        <li>halo 3</li>
+
                     </ul>
                     <div className="bdDetail">
-                        <h1>{value.singleBlog.title}</h1>
+                        <h1>{blog.title}</h1>
                         <article>
-                            {value.singleBlog.content}
+                            {blog.content}
                         </article>
                     </div>
                 </div>

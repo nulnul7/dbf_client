@@ -282,37 +282,58 @@ flex: 2.5;
 
 /* blog Detail */
 .bdContainer{
-  width: 80vw;
+  width: 100vw;
   max-width: 1200px;
   height: 70vh;
-  background-color: rgb(229, 229, 226);
   display: flex;
   justify-content: center;
   margin: 70px auto 0 auto;
 }
 .bdWrapper{
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.carousel{
-  object-fit: contain;
-  width: 10%;
-  background-color: aqua;
-}
+
 .bdContents{
   display: flex;
-  width: 100%;
-  padding: 20px;
+  width: 80%;
+  padding: 30px;
 }
 .bdContents ul {
-  flex: 1;
+  flex: 1.5;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.bdContents ul li{
+  padding-bottom: 10px;
+  margin-top: 10px; 
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: gray 1px solid;
+}
+.bdContents ul li:last-child{
+  border: none;
 }
 .bdDetail{
   display: flex;
   flex-direction: column;
-  flex: 3;
+  flex: 3.5;
+}
+.bdDetail h1 {
+  margin: 10px 0 20px 0;
+  font-weight: 400;
+}
+.altPicts{
+  z-index: 50000;
+  width: 100%;
+  position: sticky;
+  left: 0;
+  top: 0;
 }
 
 /* sosmed Footer*/
