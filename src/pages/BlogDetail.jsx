@@ -1,59 +1,69 @@
 import React, { useState } from 'react';
-import Carousel from 'react-gallery-carousel';
-import 'react-gallery-carousel/dist/index.css';
 import imageSubs from '../assets/defaultImages.jpeg';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+// import { BlogContext } from '../contextBlog';
 
 
 const BlogDetail = () => {
 
-    const [blog, setBlog] = useState({})
+    const [blog, setBlog] = useState();
+    const [allBlogs, setAllBlogs] = useState();
+    // const { state } = useContext(BlogContext);
+    // console.log(state, "isi state context")
 
     let location = useLocation();
     const id = location.pathname.slice(6)
+    const navigate = useNavigate()
 
     React.useEffect(() => {
         const coba = async () => {
-            const getData = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
-            setBlog(getData.data)
-            console.log(getData.data, 'isi blog single')
+            try {
+                const getData = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
+                console.log(getData.data, 'isi blog single')
+                setBlog(getData.data)
+
+            } catch (error) {
+                console.log(error.data);
+            }
         }
         coba();
+        const getBlogs = async () => {
+            try {
+                const getBlogs = await axios.get(`http://localhost:5500/5R2I/blog`)
+                setAllBlogs(getBlogs.data)
+            } catch (error) {
+                console.log(error.data);
+            }
+        }
+        getBlogs();
     }, [id])
 
 
-    const images = blog.photos?.map((number) => ({
-        src: `${number}`
-    }));
+    // const images = blog.photos?.map((number) => ({
+    //     src: `${number}` || imageSubs
+    // }));
 
     return (
         <div className="bdContainer">
             <div className="bdWrapper">
-                <div className="carousel">
-                    {
-                        images ?
-                            <Carousel
-                                images={images}
-                                style={{ height: 250, width: 1050 }}
-                                hasMediaButton={false}
-                                hasThumbnails={false}
-                                objectFit='cover'
-                            /> : <img src={imageSubs} alt="nkri" className='altPicts' />
-                    }
-                </div>
-                <img src='' alt='' />
+
+                <img src={imageSubs} alt='blogImage' className='blogBanner' />
                 <div className="bdContents">
                     <ul>
-                        <li>halo 1</li>
-                        <li>halo 2</li>
-                        <li>halo 3</li>
-
+                        {allBlogs?.map(item =>
+                            <li
+                                key={item._id}
+                                onClick={() => navigate(`/blog/${item._id}`)}>
+                                {item.title}
+                            </li>
+                        )}
                     </ul>
                     <div className="bdDetail">
-                        <h1>{blog.title}</h1>
+                        <h1> {blog?.title}</h1>
                         <article>
-                            {blog.content}
+                            {blog?.content}
                         </article>
                     </div>
                 </div>

@@ -294,11 +294,19 @@ flex: 2.5;
   flex-direction: column;
   align-items: center;
 }
+.blogBanner{
+  width: 90%;
+  max-width: 1080px;
+  height: 150px;
+  object-fit: cover;
+  object-position:top;
+}
 
 .bdContents{
   display: flex;
-  width: 80%;
-  padding: 30px;
+  width: 90%;
+  padding: 20px;
+  margin-top: 30px;
 }
 .bdContents ul {
   flex: 1.5;
