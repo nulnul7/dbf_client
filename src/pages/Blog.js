@@ -45,7 +45,7 @@ const Blog = () => {
     }
     getBlogSingle()
     console.log('isi singleBlog', value, blog);
-    navigate(`/blog/${id}`, { state: { blogId } })
+    navigate(`/blog/${id}`)
   }
 
   return (
