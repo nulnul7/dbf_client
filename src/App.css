@@ -296,17 +296,17 @@ flex: 2.5;
 } */
 .blogBanner{
   width: 100%;
-  max-width: 1080px;
-  object-fit: cover;
+  max-height: 330px;
+  max-width: 1100px;
+  object-fit: contain;
   object-position:top;
+  margin: 0 auto;
 }
 .card {
   border: 1px solid #fff;
-  background: black;
   border-radius: 8px;
   overflow: hidden;
-
-  height: 335 px;
+  margin-top: 50px;
   color: #fff;
   cursor: pointer;
 }
@@ -366,7 +366,7 @@ flex: 2.5;
 
 .sosmed {
   height: 20px;
-  margin: 30px 100px 0 auto;
+  margin: 30px 100px 20px auto;
 }
 .sosmed ul {
   display: flex;

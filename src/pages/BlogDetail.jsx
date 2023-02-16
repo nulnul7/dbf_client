@@ -26,7 +26,7 @@ const BlogDetail = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        initialSlide: 2
+        initialSlide: 1
     };
 
     React.useEffect(() => {
@@ -56,17 +56,6 @@ const BlogDetail = () => {
         }
         getBlogs();
     }, [id])
-
-    console.log(imageBlog, 'isi img');
-
-    // let images = img.length !== "" ?
-    //     img.map((item, i) => {
-    //         console.log(item)
-    //         return (
-    //             <img src={item} alt="" key={i} className='blogBanner' />
-    //         )
-    //     })
-    //     : imageSubs;
 
     return (
         <div className="bdContainer">

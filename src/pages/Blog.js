@@ -8,8 +8,6 @@ import { BlogContext } from '../contextBlog'
 const Blog = () => {
 
   const [blog, setBlog] = useState([])
-  const [blogId, setBlogId] = useState()
-
   const { dispatch, value } = useContext(BlogContext)
 
   useEffect(() => {
@@ -30,7 +28,6 @@ const Blog = () => {
     const getBlogSingle = async () => {
       try {
         const blog = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
-        setBlogId(blog.data)
         dispatch({
           type: "GET_BLOG_SINGLE",
           payload: blog.data
