@@ -10,6 +10,9 @@ import Portfolio from '../src/pages/Portfolio';
 import './App.css';
 import PortfolioRendered from './pages/PortfolioRendered';
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function App() {
   return (
@@ -20,10 +23,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/portfolio/:slug" element={<PortfolioRendered />} />
-          
+
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
-          
+
           <Route path='/masuk' element={<Login />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

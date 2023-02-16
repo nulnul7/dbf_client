@@ -4,6 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Slider from "react-slick";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const BlogDetail = () => {
 
@@ -18,10 +21,12 @@ const BlogDetail = () => {
     //--slider
     const settings = {
         dots: true,
+        lazyLoad: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        initialSlide: 2
     };
 
     React.useEffect(() => {
@@ -65,34 +70,35 @@ const BlogDetail = () => {
 
     return (
         <div className="bdContainer">
-            <div className="bdWrapper">
-
-                <Slider {...settings}>
-                    {/* <img src={"https://res.cloudinary.com/mangga/image/upload/v1674205409/portImages/Rectangle_12_nys7ue.png"} alt="" className='blogBanner' /> */}
-                    <div>
-
-                        {
-                            imageBlog.map((item, index) =>
-                                <img src={item} key={index} alt="" />)
-                        }
-                    </div>
-                </Slider>
-                <div className="bdContents">
-                    <ul>
-                        {allBlogs?.map(item =>
-                            <li
-                                key={item._id}
-                                onClick={() => navigate(`/blog/${item._id}`)}>
-                                {item.title}
-                            </li>
-                        )}
-                    </ul>
-                    <div className="bdDetail">
-                        <h1> {blog?.title}</h1>
-                        <article>
-                            {blog?.content}
-                        </article>
-                    </div>
+            <Slider {...settings}>
+                {
+                    imageBlog.length === 0 ?
+                        <div className='card'>
+                            <img src={imageSubs} alt="gambar blog" className="blogBanner" />
+                        </div> : imageBlog.map((item, index) => {
+                            return (
+                                <div key={index} className='card'>
+                                    <img src={item} alt="gambar blog" className="blogBanner" />
+                                </div>
+                            )
+                        })
+                }
+            </Slider>
+            <div className="bdContents">
+                <ul>
+                    {allBlogs?.map(item =>
+                        <li
+                            key={item._id}
+                            onClick={() => navigate(`/blog/${item._id}`)}>
+                            {item.title}
+                        </li>
+                    )}
+                </ul>
+                <div className="bdDetail">
+                    <h1> {blog?.title}</h1>
+                    <article>
+                        {blog?.content}
+                    </article>
                 </div>
             </div>
         </div>

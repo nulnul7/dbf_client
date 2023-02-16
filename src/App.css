@@ -280,8 +280,8 @@ flex: 2.5;
   flex: 1.2;
 }
 
-/* blog Detail */
-.bdContainer{
+/*--- blog Detail ---*/
+/* .bdContainer{
   width: 100vw;
   max-width: 1200px;
   height: 70vh;
@@ -293,13 +293,22 @@ flex: 2.5;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 .blogBanner{
-  width: 90%;
+  width: 100%;
   max-width: 1080px;
-  height: 150px;
   object-fit: cover;
   object-position:top;
+}
+.card {
+  border: 1px solid #fff;
+  background: black;
+  border-radius: 8px;
+  overflow: hidden;
+
+  height: 335 px;
+  color: #fff;
+  cursor: pointer;
 }
 
 .bdContents{
