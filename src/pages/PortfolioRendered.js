@@ -67,18 +67,16 @@ const PortfolioRendered = ({
 
 
   const context = useContext(Context)
-
   const { slideStartNumber, categorySlide } = context;
   const [current, setCurrent] = useState(slideStartNumber)
 
-  const slideLength = categorySlide.length
-
   useEffect(() => {
+    const slideLength = categorySlide.length
     const setTimer = setTimeout(() => {
       current < slideLength - 1 ? setCurrent(current + 1) : setCurrent(0);
     }, 7000)
     setTimer();
-    return () => clearTimeout(setTimer)
+    return clearTimeout(setTimer)
   }, [current])
 
   let imageSlide = `http://localhost:5000/${categorySlide[current].images}`;

@@ -22,7 +22,6 @@ const Blog = () => {
     getBlog()
   }, [])
 
-  console.log('isi dari data detil', blog)
   const navigate = useNavigate()
   const clickHandler = (id) => {
     const getBlogSingle = async () => {

@@ -36,9 +36,10 @@ const BlogDetail = () => {
                 console.log(getData.data, 'isi blog single')
                 setBlog(getData.data)
                 setImageBlog(
-                    getData.data.photos.map(item => {
-                        return (item)
-                    })
+                    getData.data.photos.length === 0 ? [imageSubs] :
+                        getData.data.photos.map(item => {
+                            return (item)
+                        })
                 )
 
             } catch (error) {
@@ -61,16 +62,13 @@ const BlogDetail = () => {
         <div className="bdContainer">
             <Slider {...settings}>
                 {
-                    imageBlog.length === 0 ?
-                        <div className='card'>
-                            <img src={imageSubs} alt="gambar blog" className="blogBanner" />
-                        </div> : imageBlog.map((item, index) => {
-                            return (
-                                <div key={index} className='card'>
-                                    <img src={item} alt="gambar blog" className="blogBanner" />
-                                </div>
-                            )
-                        })
+                    imageBlog.map((item, index) => {
+                        return (
+                            <div key={index} className='card'>
+                                <img src={item} alt="gambar blog" className="blogBanner" />
+                            </div>
+                        )
+                    })
                 }
             </Slider>
             <div className="bdContents">

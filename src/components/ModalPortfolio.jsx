@@ -20,7 +20,7 @@ const ModalPortfolio = ({ title, client, description, modalPict, dots, changeDis
         <img src={modalPict} alt="" className="imgModal" />
         <div className="bulletNav">
           {dots.map((_, i) => (
-            <div className="dot" onClick={()=>changeDisplay(i)} >•</div>
+            <div key={i} className="dot" onClick={() => changeDisplay(i)} >•</div>
           ))}
         </div>
       </div>
