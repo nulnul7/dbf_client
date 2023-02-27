@@ -43,6 +43,8 @@ const Blog = () => {
     console.log('isi singleBlog', value, blog);
     navigate(`/blog/${id}`)
   }
+  const blogSort = [...blog].reverse()
+  console.log("isi sort blog", blogSort);
 
   return (
     <div className="blogContainer">
@@ -51,7 +53,7 @@ const Blog = () => {
         <span className='subHeader grid-2'>simply thought or just curiosity</span>
       </div>
       {
-        blog.map(item => {
+        blogSort.map(item => {
           let gdate = item.createdAt?.slice(0, 10);
           return (
             <BlogCard

@@ -220,13 +220,17 @@ ul.menu {
 .blogContainer {
   display: flex;
   flex-direction: column;
+  height: 610px;
   /* grid-template-columns: repeat( auto-fill, 0.5fr 0.5fr 1.5fr 1.5fr 0.75fr);  */
   grid-gap: 25px;
-  padding: 30px 20px; 
+  padding: 100px 20px 0  20px; 
   color: black;
   background-color: rgb(246, 247, 247);
   justify-content: center;
-  margin: 50px auto;
+  margin: 80px auto 0 auto;
+  overflow: scroll;
+  overflow-x: hidden;
+  
 }
 .blogContainer span {
   font-size: 14px;
@@ -234,15 +238,18 @@ ul.menu {
 .blogHeader{
  display: flex;
  margin-bottom: 20px; 
+ margin-top: 80px;
 }
 .blogRow{
   display: flex;
   width: 100%;
   border-bottom: solid greenyellow 1px;
-  margin: 10px 10px 10px 0;
+  margin: 15px 10px 15px 0;
   cursor: pointer;
 }
-
+.blogRow:nth-last-child(1){
+  border-bottom: none;
+}
 .blogContainer h1 {
   font-weight: 500;
   margin-right: -10px;
