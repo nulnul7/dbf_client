@@ -18,6 +18,7 @@ const Portfolio = () => {
         const getPortfolios = async () => {
             try {
                 const portf = await axios('http://localhost:5500/5R2I/portfolio')
+                console.log('isi portfolios data', portf.data);
                 setPortfolios(portf.data)
                 setCategoryPortf(portf.data)
             } catch (error) {
@@ -41,7 +42,7 @@ const Portfolio = () => {
         const deImage = portfolios.find((item) => {
             return item._id === id
         })
-        setUrlImage(()=>deImage.photos.toString());
+        setUrlImage(() => deImage.photos[0].toString());
     }
 
     const category = (i) => {
@@ -53,6 +54,9 @@ const Portfolio = () => {
     const openModal = (id) => {
         setModal(true);
         setModalContent(portfolios.find(item => item._id === id));
+        // let pictLength = portfolios.photos.length;
+        // console.log('isi pictLength', pictLength);
+
     }
 
     const closeModal = () => {
@@ -73,9 +77,9 @@ const Portfolio = () => {
                 <div className='pWrapper'>
                     <div className='pCategory'>
                         <ul>
-                            <li className='category' onClick={() => category('Graphic Design')}>Graphic Design</li>
-                            <li className='category' onClick={() => category('Web Design')}>Web Design</li>
-                            <li className='category' onClick={() => category('Photography')}>Photography</li>
+                            <li className='category' onClick={() => category('graphicDesign')}>Graphic Design</li>
+                            <li className='category' onClick={() => category('webDesign')}>Web Design</li>
+                            <li className='category' onClick={() => category('photography')}>Photography</li>
                             <li className='category' onClick={() => category('all')}>All</li>
                         </ul>
                     </div>

@@ -10,7 +10,7 @@ function Footer() {
             <ul>
                 <li><Link to='www.instagram.com'><img src={IconInsta} alt="icon" className='icons' /></Link></li>
                 <li><Link to='www.facebook.com'><img src={IconFB} alt="icon" className='icons' /></Link></li>
-                <li><Link to='www.dribble.com'><img src={IconDribble} alt="icon" className='icons' /></Link></li>
+                <li><Link to='https://dribbble.com/sodasusu'><img src={IconDribble} alt="icon" className='icons' /></Link></li>
             </ul>
         </div>
     )

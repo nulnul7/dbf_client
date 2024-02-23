@@ -5,7 +5,6 @@ import Blog from '../src/pages/Blog';
 import BlogDetail from '../src/pages/BlogDetail';
 import ErrorPage from '../src/pages/ErrorPage';
 import Home from '../src/pages/Home';
-import Login from '../src/pages/Login';
 import Portfolio from '../src/pages/Portfolio';
 import './App.css';
 import PortfolioRendered from './pages/PortfolioRendered';
@@ -27,7 +26,6 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
 
-          <Route path='/masuk' element={<Login />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />

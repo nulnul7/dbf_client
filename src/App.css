@@ -453,8 +453,8 @@ flex: 2.5;
 }
 .dot {
   color: rgba(248, 235, 180, 0.8);
-  font-size: 1.8em;
-  margin-top: -45px;
+  font-size: 3.2em;
+  margin-top: -65px;
   margin-right: 10px;
   cursor: pointer;
 }
