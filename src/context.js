@@ -40,7 +40,7 @@ export class ContextProvider extends Component {
     // }
 
     getBlog = async () => {
-        await axios.get('http://localhost:5000/blog')
+        await axios.get('http://103.127.134.61/5R2I/blog')
             .then((blog) => {
                 this.setState({ blogData: blog.data })
             })

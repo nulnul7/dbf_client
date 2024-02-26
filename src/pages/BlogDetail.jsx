@@ -17,6 +17,8 @@ const BlogDetail = () => {
     let location = useLocation();
     const id = location.pathname.slice(6)
     const navigate = useNavigate();
+    const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL, })
+
 
     //--slider
     const settings = {
@@ -32,7 +34,7 @@ const BlogDetail = () => {
     React.useEffect(() => {
         const coba = async () => {
             try {
-                const getData = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
+                const getData = await axiosInstance.get(`blog/${id}`)
                 console.log(getData.data, 'isi blog single')
                 setBlog(getData.data)
                 setImageBlog(
@@ -49,7 +51,7 @@ const BlogDetail = () => {
         coba();
         const getBlogs = async () => {
             try {
-                const getBlogs = await axios.get(`http://localhost:5500/5R2I/blog`)
+                const getBlogs = await axiosInstance.get(`blog`)
                 setAllBlogs(getBlogs.data)
             } catch (error) {
                 console.log(error.data);

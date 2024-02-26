@@ -9,11 +9,13 @@ const Blog = () => {
 
   const [blog, setBlog] = useState([])
   const { dispatch, value } = useContext(BlogContext)
+  const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL, })
+
 
   useEffect(() => {
     const getBlog = async () => {
       try {
-        const dataBlog = await axios.get('http://localhost:5500/5R2I/blog')
+        const dataBlog = await axiosInstance.get("blog")
         setBlog(dataBlog.data)
       } catch (error) {
         console.log(error.message);
@@ -26,7 +28,7 @@ const Blog = () => {
   const clickHandler = (id) => {
     const getBlogSingle = async () => {
       try {
-        const blog = await axios.get(`http://localhost:5500/5R2I/blog/${id}`)
+        const blog = await axiosInstance.get(`blog/${id}`)
         dispatch({
           type: "GET_BLOG_SINGLE",
           payload: blog.data

@@ -46,10 +46,13 @@ const BlogReducer = (state, action) => {
 
 const BlogProvider = ({ children }) => {
 
+    const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL, })
+
+
     useEffect(() => {
         const allBlogs = async () => {
             try {
-                const blogs = await axios.get('http://localhost:5500/5R2I/blog')
+                const blogs = await axiosInstance.get('blog')
                 console.log(blogs.data);
                 dispatch({
                     type: "GET_BLOGS",

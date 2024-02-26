@@ -13,11 +13,12 @@ const Portfolio = () => {
     const [isPictReload, setIsPictReload] = useState(false)
     const [pictDisplay, setPictDisplay] = useState('')
 
+    const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL, })
 
     useEffect(() => {
         const getPortfolios = async () => {
             try {
-                const portf = await axios('http://localhost:5500/5R2I/portfolio')
+                const portf = await axiosInstance.get("portfolio")
                 console.log('isi portfolios data', portf.data);
                 setPortfolios(portf.data)
                 setCategoryPortf(portf.data)

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import gambar from '../assets/defaultImages.jpeg'
 import { Context } from '../context'
+import axios from 'axios';
 
 
 const FrameImage = styled.div`
@@ -65,6 +66,7 @@ const PortfolioRendered = ({
   ...props
 }) => {
 
+  const axiosInstance = axios.create({ baseURL: process.env.REACT_APP_API_URL, })
 
   const context = useContext(Context)
   const { slideStartNumber, categorySlide } = context;
@@ -79,7 +81,7 @@ const PortfolioRendered = ({
     return clearTimeout(setTimer)
   }, [current])
 
-  let imageSlide = `http://localhost:5000/${categorySlide[current].images}`;
+  let imageSlide = `${axiosInstance}/${categorySlide[current].images}`;
   let titleSlide = categorySlide[current].title;
   let descriptionSlide = categorySlide[current].description;
 
